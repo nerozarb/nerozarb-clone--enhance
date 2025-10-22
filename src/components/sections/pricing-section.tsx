@@ -90,10 +90,10 @@ const PricingSection = () => {
   };
 
   return (
-    <section id="pricing" className="py-32 bg-background relative overflow-hidden">
+    <section id="pricing" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Background decoration */}
       <motion.div 
-        className="absolute top-1/4 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        className="absolute top-1/4 left-0 w-60 sm:w-80 md:w-96 h-60 sm:h-80 md:h-96 bg-white/5 rounded-full blur-3xl"
         animate={{ 
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3]
@@ -105,7 +105,7 @@ const PricingSection = () => {
         }}
       />
       <motion.div 
-        className="absolute bottom-1/4 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-0 w-60 sm:w-80 md:w-96 h-60 sm:h-80 md:h-96 bg-white/5 rounded-full blur-3xl"
         animate={{ 
           scale: [1, 1.3, 1],
           opacity: [0.2, 0.4, 0.2]
@@ -118,40 +118,40 @@ const PricingSection = () => {
         }}
       />
       
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4">
         <motion.div 
-          className="max-w-3xl mx-auto text-center mb-20"
+          className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 sm:mb-6 px-2">
             Apna Growth Package{" "}
             <span className="text-white/90">
               Choose Karein
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-2">
             Pakistani businesses ke liye transparent pricing — jaaniye exactly kya milega
           </p>
           
           {/* Trust Signal */}
           <motion.div 
-            className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-sm font-semibold text-white"
+            className="mt-6 sm:mt-8 inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-xs sm:text-sm font-semibold text-white"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.05 }}
           >
-            <TrendingUp className="w-4 h-4 text-green-400" />
+            <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
             Join 50+ Pakistani brands growing with AI
           </motion.div>
         </motion.div>
 
         <motion.div 
-          className="mt-16 grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          className="mt-12 sm:mt-16 grid lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -161,7 +161,7 @@ const PricingSection = () => {
             <motion.div
               key={plan.name}
               className={`
-                group relative p-8 rounded-3xl transition-all duration-500
+                group relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all duration-500
                 ${plan.isPopular
                   ? 'bg-white text-black shadow-2xl shadow-white/20 border-2 border-white/50'
                   : 'bg-card/50 backdrop-blur-sm border border-border/50'
@@ -178,77 +178,78 @@ const PricingSection = () => {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <span className="flex items-center gap-x-2 bg-black text-white text-sm font-bold px-4 py-2 rounded-full shadow-xl">
-                    <Sparkles className="w-4 h-4" />
-                    {plan.popularBadge}
+                  <span className="flex items-center gap-x-1.5 sm:gap-x-2 bg-black text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-xl">
+                    <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">{plan.popularBadge}</span>
+                    <span className="sm:hidden">Most Popular</span>
                   </span>
                 </motion.div>
               )}
 
               <div className="relative flex flex-col h-full">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                   <motion.div 
-                    className={`p-3 rounded-xl ${plan.isPopular ? 'bg-black/10' : 'bg-white/10'}`}
+                    className={`p-2 sm:p-3 rounded-xl ${plan.isPopular ? 'bg-black/10' : 'bg-white/10'}`}
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
                     {plan.icon}
                   </motion.div>
-                  <h3 className={`text-3xl font-bold ${plan.isPopular ? 'text-black' : 'text-white'}`}>
+                  <h3 className={`text-2xl sm:text-3xl font-bold ${plan.isPopular ? 'text-black' : 'text-white'}`}>
                     {plan.name}
                   </h3>
                 </div>
                 
-                <div className="mb-6">
-                  <span className="text-5xl md:text-6xl font-bold tracking-tight">{plan.price}</span>
+                <div className="mb-4 sm:mb-6">
+                  <span className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">{plan.price}</span>
                   {plan.pricePeriod && (
-                    <span className={`text-lg ml-2 ${plan.isPopular ? 'text-black/70' : 'text-muted-foreground'}`}>{plan.pricePeriod}</span>
+                    <span className={`text-base sm:text-lg ml-2 ${plan.isPopular ? 'text-black/70' : 'text-muted-foreground'}`}>{plan.pricePeriod}</span>
                   )}
                 </div>
 
-                <p className={`mb-8 text-base leading-relaxed ${plan.isPopular ? 'text-black/80' : 'text-muted-foreground'}`}>
+                <p className={`mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed ${plan.isPopular ? 'text-black/80' : 'text-muted-foreground'}`}>
                   {plan.description}
                 </p>
 
                 {/* Transparent Breakdown */}
-                <div className={`mb-8 space-y-3 p-4 rounded-xl ${plan.isPopular ? 'bg-black/5' : 'bg-white/5'}`}>
+                <div className={`mb-6 sm:mb-8 space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-xl ${plan.isPopular ? 'bg-black/5' : 'bg-white/5'}`}>
                   <div className="flex items-start gap-2">
-                    <Clock className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
+                    <Clock className={`w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
                     <div>
-                      <p className={`text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Work Hours</p>
-                      <p className={`text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.hourBreakdown}</p>
+                      <p className={`text-[10px] sm:text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Work Hours</p>
+                      <p className={`text-xs sm:text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.hourBreakdown}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <FileText className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
+                    <FileText className={`w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
                     <div>
-                      <p className={`text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Deliverables</p>
-                      <p className={`text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.deliverables}</p>
+                      <p className={`text-[10px] sm:text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Deliverables</p>
+                      <p className={`text-xs sm:text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.deliverables}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Wrench className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
+                    <Wrench className={`w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
                     <div>
-                      <p className={`text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Tools Included</p>
-                      <p className={`text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.tools}</p>
+                      <p className={`text-[10px] sm:text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Tools Included</p>
+                      <p className={`text-xs sm:text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.tools}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Users2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
+                    <Users2 className={`w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`} />
                     <div>
-                      <p className={`text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Best For</p>
-                      <p className={`text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.bestFor}</p>
+                      <p className={`text-[10px] sm:text-xs font-semibold mb-0.5 ${plan.isPopular ? 'text-black/60' : 'text-white/60'}`}>Best For</p>
+                      <p className={`text-xs sm:text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white'}`}>{plan.bestFor}</p>
                     </div>
                   </div>
                 </div>
 
-                <ul className="space-y-4 mb-10">
+                <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <div className={`mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${plan.isPopular ? 'bg-black/10' : 'bg-white/10'}`}>
-                        <Check className={`w-3 h-3 ${plan.isPopular ? 'text-black' : 'text-white'}`} />
+                    <li key={feature} className="flex items-start gap-2 sm:gap-3">
+                      <div className={`mt-0.5 flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center ${plan.isPopular ? 'bg-black/10' : 'bg-white/10'}`}>
+                        <Check className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${plan.isPopular ? 'text-black' : 'text-white'}`} />
                       </div>
-                      <span className={`text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white/90'}`}>{feature}</span>
+                      <span className={`text-xs sm:text-sm font-medium ${plan.isPopular ? 'text-black' : 'text-white/90'}`}>{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -257,7 +258,7 @@ const PricingSection = () => {
                   <motion.a
                     href="#contact"
                     className={`
-                      block w-full text-center py-4 px-6 rounded-xl text-base font-bold transition-all duration-300 shadow-lg
+                      block w-full text-center py-3 sm:py-4 px-4 sm:px-6 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 shadow-lg
                       ${plan.isPopular
                         ? 'bg-black text-white hover:bg-black/90'
                         : 'bg-white text-black hover:shadow-2xl hover:shadow-white/20'
