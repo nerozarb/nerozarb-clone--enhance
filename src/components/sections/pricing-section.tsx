@@ -1,4 +1,7 @@
+"use client";
+
 import { Check, Sparkles, Zap, Crown, Clock, FileText, Wrench, Users2, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const pricingPlans = [
   {
@@ -64,14 +67,65 @@ const pricingPlans = [
 ];
 
 const PricingSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
   return (
     <section id="pricing" className="py-32 bg-background relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <motion.div 
+        className="absolute top-1/4 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ 
+          duration: 4, 
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2]
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5
+        }}
+      />
       
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-20">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
             Apna Growth Package{" "}
             <span className="text-white/90">
@@ -83,38 +137,63 @@ const PricingSection = () => {
           </p>
           
           {/* Trust Signal */}
-          <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-sm font-semibold text-white">
+          <motion.div 
+            className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-sm font-semibold text-white"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+          >
             <TrendingUp className="w-4 h-4 text-green-400" />
             Join 50+ Pakistani brands growing with AI
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="mt-16 grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <motion.div 
+          className="mt-16 grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {pricingPlans.map((plan, index) => (
-            <div
+            <motion.div
               key={plan.name}
               className={`
                 group relative p-8 rounded-3xl transition-all duration-500
                 ${plan.isPopular
-                  ? 'bg-white text-black shadow-2xl shadow-white/20 scale-105 border-2 border-white/50'
-                  : 'bg-card/50 backdrop-blur-sm border border-border/50 hover:shadow-2xl hover:shadow-white/10 hover:scale-105 hover:border-white/30'
+                  ? 'bg-white text-black shadow-2xl shadow-white/20 border-2 border-white/50'
+                  : 'bg-card/50 backdrop-blur-sm border border-border/50'
                 }
               `}
+              variants={itemVariants}
+              whileHover={{ scale: plan.isPopular ? 1.02 : 1.05, y: -5 }}
             >
               {plan.isPopular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <motion.div 
+                  className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
                   <span className="flex items-center gap-x-2 bg-black text-white text-sm font-bold px-4 py-2 rounded-full shadow-xl">
                     <Sparkles className="w-4 h-4" />
                     {plan.popularBadge}
                   </span>
-                </div>
+                </motion.div>
               )}
 
               <div className="relative flex flex-col h-full">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-3 rounded-xl ${plan.isPopular ? 'bg-black/10' : 'bg-white/10'}`}>
+                  <motion.div 
+                    className={`p-3 rounded-xl ${plan.isPopular ? 'bg-black/10' : 'bg-white/10'}`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     {plan.icon}
-                  </div>
+                  </motion.div>
                   <h3 className={`text-3xl font-bold ${plan.isPopular ? 'text-black' : 'text-white'}`}>
                     {plan.name}
                   </h3>
@@ -175,23 +254,25 @@ const PricingSection = () => {
                 </ul>
 
                 <div className="mt-auto">
-                  <a
+                  <motion.a
                     href="#contact"
                     className={`
-                      block w-full text-center py-4 px-6 rounded-xl text-base font-bold transition-all duration-300 hover:scale-105 shadow-lg
+                      block w-full text-center py-4 px-6 rounded-xl text-base font-bold transition-all duration-300 shadow-lg
                       ${plan.isPopular
-                        ? 'bg-black text-white hover:bg-black/90 hover:shadow-2xl'
+                        ? 'bg-black text-white hover:bg-black/90'
                         : 'bg-white text-black hover:shadow-2xl hover:shadow-white/20'
                       }
                     `}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {plan.ctaText}
-                  </a>
+                  </motion.a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,7 @@
+"use client";
+
 import { Check, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ComparisonSection = () => {
   const comparisonData = [
@@ -34,24 +37,85 @@ const ComparisonSection = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const rowVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <section className="bg-gradient-to-b from-background via-secondary/20 to-background py-24 md:py-32 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <motion.div 
+        className="absolute top-1/4 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2]
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5
+        }}
+      />
       
       <div className="container relative z-10">
-        <div className="mb-16 text-center">
+        <motion.div 
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+        >
           <h2 className="font-poppins text-4xl md:text-5xl font-bold text-white mb-6">
             Why AI? <span className="text-white/90">Why Us?</span>
           </h2>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
             Traditional agencies vs NEROZARB ka fark dekhen
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="rounded-3xl border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden">
+        <motion.div 
+          className="max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+        >
+          <motion.div 
+            className="rounded-3xl border border-border/50 bg-card/50 backdrop-blur-sm overflow-hidden"
+            whileHover={{ boxShadow: "0 20px 60px rgba(255, 255, 255, 0.1)" }}
+            transition={{ duration: 0.3 }}
+          >
             {/* Table Header */}
             <div className="grid grid-cols-3 gap-4 p-6 md:p-8 bg-white/5 border-b border-border/50">
               <div></div>
@@ -69,47 +133,63 @@ const ComparisonSection = () => {
             </div>
 
             {/* Table Body */}
-            {comparisonData.map((row, index) => (
-              <div 
-                key={index}
-                className="grid grid-cols-3 gap-4 p-6 md:p-8 border-b border-border/30 last:border-b-0 hover:bg-white/5 transition-colors"
-              >
-                <div className="flex items-center">
-                  <h4 className="font-poppins text-base md:text-lg font-semibold text-white">
-                    {row.category}
-                  </h4>
-                </div>
-                <div className="flex items-center justify-center text-center">
-                  <div className="flex items-start gap-2">
-                    <X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm md:text-base text-muted-foreground">
-                      {row.traditional}
-                    </p>
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {comparisonData.map((row, index) => (
+                <motion.div 
+                  key={index}
+                  className="grid grid-cols-3 gap-4 p-6 md:p-8 border-b border-border/30 last:border-b-0 hover:bg-white/5 transition-colors"
+                  variants={rowVariants}
+                >
+                  <div className="flex items-center">
+                    <h4 className="font-poppins text-base md:text-lg font-semibold text-white">
+                      {row.category}
+                    </h4>
                   </div>
-                </div>
-                <div className="flex items-center justify-center text-center">
-                  <div className="flex items-start gap-2">
-                    <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm md:text-base text-white font-medium">
-                      {row.nerozarb}
-                    </p>
+                  <div className="flex items-center justify-center text-center">
+                    <div className="flex items-start gap-2">
+                      <X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm md:text-base text-muted-foreground">
+                        {row.traditional}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                  <div className="flex items-center justify-center text-center">
+                    <div className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <p className="text-sm md:text-base text-white font-medium">
+                        {row.nerozarb}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
 
           {/* CTA Below Table */}
-          <div className="mt-12 text-center">
-            <a
+          <motion.div 
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <motion.a
               href="#contact"
-              className="group inline-flex h-14 items-center justify-center rounded-xl bg-white px-10 text-base font-semibold text-black shadow-2xl shadow-white/20 transition-all duration-300 hover:scale-105 hover:shadow-3xl hover:shadow-white/30"
+              className="group inline-flex h-14 items-center justify-center rounded-xl bg-white px-10 text-base font-semibold text-black shadow-2xl shadow-white/20 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Switch to AI-Powered Marketing
               <Check className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
