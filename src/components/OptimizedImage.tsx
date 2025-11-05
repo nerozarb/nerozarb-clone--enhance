@@ -21,10 +21,10 @@ export default function OptimizedImage({
   
   return (
     <Image
+      {...props}
       quality={quality}
       loading={priority ? undefined : 'lazy'}
       placeholder={isExternal ? 'empty' : props.placeholder}
-      {...props}
     />
   );
 }
