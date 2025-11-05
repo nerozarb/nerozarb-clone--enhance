@@ -2,6 +2,22 @@
 
 A high-performance Next.js application for digital marketing services, optimized for speed and user experience.
 
+## 🚀 Deploy to Vercel Now!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone)
+
+**Status:** ✅ Ready for Production | Build: ✅ Passing | Bundle: 174 KB | Orchids: ✅ Removed
+
+### Quick Deploy (2 minutes)
+```bash
+npm i -g vercel    # Install Vercel CLI
+vercel --prod      # Deploy to production
+```
+
+See **[DEPLOY_NOW.md](./DEPLOY_NOW.md)** for detailed deployment instructions.
+
+---
+
 ## ⚡ Performance Optimizations
 
 This project has been extensively optimized for performance:

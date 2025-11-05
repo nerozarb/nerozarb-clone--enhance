@@ -1,0 +1,39 @@
+# Cursor Rules for NEROZARB Project
+
+## Project Status
+- ✅ Production Ready
+- ✅ Vercel Optimized
+- ✅ All Orchids references removed
+- ✅ Performance optimized (174 KB bundle)
+
+## Build Commands
+- Development: `npm run dev`
+- Production: `npm run build`
+- Deploy: `vercel --prod`
+- Analyze: `npm run analyze`
+
+## Performance Targets
+- Initial Bundle: < 200 KB (Current: 174 KB ✅)
+- Page Size: < 30 KB per route
+- Lighthouse Performance: > 90
+- Build Time: < 10 seconds
+
+## Code Standards
+- Use dynamic imports for below-fold content
+- Optimize images with next/image
+- Use next/font for typography
+- Keep bundle size minimal
+- TypeScript strict mode (ignored during builds for speed)
+
+## Deployment
+- Platform: Vercel
+- Region: Singapore (sin1)
+- Auto-deploy: main branch
+- Preview: Pull requests
+
+## Documentation
+All documentation is up-to-date and located in root:
+- DEPLOY_NOW.md - Quick deploy guide
+- VERCEL_DEPLOYMENT.md - Complete deployment guide
+- CHANGES_SUMMARY.md - All changes made
+- OPTIMIZATION_SUMMARY.md - Performance optimizations

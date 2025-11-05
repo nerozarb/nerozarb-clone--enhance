@@ -1,0 +1,30 @@
+# Vercel Ignore
+node_modules
+.next
+.env*.local
+.DS_Store
+*.log
+.turbo
+coverage
+.cache
+dist
+build
+
+# Development files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Testing
+__tests__
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Documentation (optional, keep if you want them deployed)
+# OPTIMIZATION_SUMMARY.md
+# PERFORMANCE_OPTIMIZATIONS.md
+# IMPLEMENTATION_CHECKLIST.md
+# QUICK_START.md

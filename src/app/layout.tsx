@@ -1,20 +1,31 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
-import ErrorReporter from "@/components/ErrorReporter";
-import Script from "next/script";
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-poppins',
+  preload: true,
 });
 
 export const metadata: Metadata = {
   title: "NEROZARB - Premium AI-Powered Social Media Marketing",
   description: "Apne brand ko data-driven marketing strategies se transform karein. Trusted by 50+ Pakistani businesses. 300% average growth guaranteed.",
+  metadataBase: new URL('https://nerozarb.com'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_PK',
+    siteName: 'NEROZARB',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -29,21 +40,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://slelguoygbfzlpylpxfs.supabase.co" />
         <link rel="dns-prefetch" href="https://wa.me" />
+        <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
       <body className="antialiased">
-        <ErrorReporter />
-        <Script
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
-          strategy="lazyOnload"
-          data-target-origin="*"
-          data-message-type="ROUTE_CHANGE"
-          data-include-search-params="true"
-          data-only-in-iframe="true"
-          data-debug="true"
-          data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
-        />
         {children}
-        <VisualEditsMessenger />
       </body>
     </html>
   );

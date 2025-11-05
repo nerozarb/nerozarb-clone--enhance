@@ -15,16 +15,15 @@ interface OptimizedImageProps extends Omit<ImageProps, 'loading' | 'quality'> {
 export default function OptimizedImage({
   quality = 75,
   priority = false,
-  placeholder = 'blur',
-  blurDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==',
   ...props
 }: OptimizedImageProps) {
+  const isExternal = typeof props.src === 'string' && props.src.startsWith('http');
+  
   return (
     <Image
       quality={quality}
       loading={priority ? undefined : 'lazy'}
-      placeholder={props.src.toString().startsWith('http') ? 'blur' : placeholder}
-      blurDataURL={props.src.toString().startsWith('http') ? blurDataURL : props.blurDataURL}
+      placeholder={isExternal ? 'empty' : props.placeholder}
       {...props}
     />
   );
