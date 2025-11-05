@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
+
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
   title: "NEROZARB - Premium AI-Powered Social Media Marketing",
@@ -15,12 +23,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.variable}>
+      <head>
+        {/* Preconnect to external domains for faster resource loading */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://slelguoygbfzlpylpxfs.supabase.co" />
+        <link rel="dns-prefetch" href="https://wa.me" />
+      </head>
       <body className="antialiased">
         <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           data-target-origin="*"
           data-message-type="ROUTE_CHANGE"
           data-include-search-params="true"

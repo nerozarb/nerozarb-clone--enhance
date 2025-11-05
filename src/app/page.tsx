@@ -1,22 +1,53 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Navbar from "@/components/sections/navbar";
 import HeroSection from "@/components/sections/hero-section";
 import SideNavigationDots from "@/components/sections/side-navigation-dots";
-import FeaturesSection from "@/components/sections/features-section";
-import ComparisonSection from "@/components/sections/comparison-section";
-import GuaranteeSection from "@/components/sections/guarantee-section";
-import PricingSection from "@/components/sections/pricing-section";
-import CaseStudiesSection from "@/components/sections/case-studies-section";
-import WhyChooseSection from "@/components/sections/why-choose-section";
-import PortfolioSection from "@/components/sections/portfolio-section";
-import TestimonialsSection from "@/components/sections/testimonials-section";
-import ProcessTimelineSection from "@/components/sections/process-timeline-section";
-import ContactFormSection from "@/components/sections/contact-form-section";
-import TrustBadgesSection from "@/components/sections/trust-badges-section";
-import ROICalculatorSection from "@/components/sections/roi-calculator-section";
-import SocialProofSection from "@/components/sections/social-proof-section";
-import Footer from "@/components/sections/footer";
-import LiveChatWidget from "@/components/ui/live-chat-widget";
+
+// Dynamically import below-the-fold sections with loading states
+const FeaturesSection = dynamic(() => import("@/components/sections/features-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const ComparisonSection = dynamic(() => import("@/components/sections/comparison-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const GuaranteeSection = dynamic(() => import("@/components/sections/guarantee-section"), {
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
+});
+const TrustBadgesSection = dynamic(() => import("@/components/sections/trust-badges-section"), {
+  loading: () => <div className="h-48 bg-background animate-pulse" />,
+});
+const PricingSection = dynamic(() => import("@/components/sections/pricing-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const ROICalculatorSection = dynamic(() => import("@/components/sections/roi-calculator-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const ProcessTimelineSection = dynamic(() => import("@/components/sections/process-timeline-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const CaseStudiesSection = dynamic(() => import("@/components/sections/case-studies-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const WhyChooseSection = dynamic(() => import("@/components/sections/why-choose-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const PortfolioSection = dynamic(() => import("@/components/sections/portfolio-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const TestimonialsSection = dynamic(() => import("@/components/sections/testimonials-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const SocialProofSection = dynamic(() => import("@/components/sections/social-proof-section"), {
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
+});
+const ContactFormSection = dynamic(() => import("@/components/sections/contact-form-section"), {
+  loading: () => <div className="h-screen bg-background animate-pulse" />,
+});
+const Footer = dynamic(() => import("@/components/sections/footer"), {
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
+});
+const LiveChatWidget = dynamic(() => import("@/components/ui/live-chat-widget"));
 
 export const metadata: Metadata = {
   title: 'Nerozarb | AI-Powered Digital Marketing Agency Pakistan - 90-Day Results Guarantee',
